@@ -1,3 +1,10 @@
+import os
+
 class Config:
-    SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:1111@localhost/library'
-    SQLALCHEMY_TRACK_MODIFICATIONS = False
+    SECRET_KEY = os.getenv('SECRET_KEY', 'asdczxcasdasdasdadazxc')  
+    SQLALCHEMY_DATABASE_URI = (
+        "postgresql://avnadmin:AVNS_-FBHwDlqhNmixCAfWuQ@pg-2e343b22-dimazedofficial-1778.e.aivencloud.com:15983/defaultdb"
+        "?sslmode=require&sslrootcert=path/to/ca.pem"  
+    )
+    SQLALCHEMY_TRACK_MODIFICATIONS = False 
+    JWT_SECRET_KEY = os.getenv('JWT_SECRET_KEY', 'asdjbnzhxjczxcjhzjxhcb')  
