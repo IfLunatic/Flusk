@@ -1,19 +1,19 @@
+from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity, get_jwt, JWTManager
 from flask import Blueprint, request, jsonify
-from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity, get_jwt
 from datetime import timedelta
 
 auth_bp = Blueprint('auth', __name__)
 
-
 revoked_tokens = set()
 
-# Login endpoint
+jwt = JWTManager()
+
+
 @auth_bp.route('/login', methods=['POST'])
 def login():
     data = request.json
     username = data.get('username')
     password = data.get('password')
-
 
     if username == 'admin' and password == 'password':
         access_token = create_access_token(identity=username, expires_delta=timedelta(hours=1))
